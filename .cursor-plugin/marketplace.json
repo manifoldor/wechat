@@ -3,7 +3,7 @@
   "owner": {
     "name": "manifoldor"
   },
-  "description": "Grokbot Official & Community Plugin Marketplace",
+  "description": "Grok Bot community plugin by manifoldor",
   "plugins": [
     {
       "name": "wechat",
