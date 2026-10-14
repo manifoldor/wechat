@@ -1,0 +1,90 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "wechat",
+  "displayName": "WeChat Agent Connector",
+  "version": "1.0.0",
+  "description": "微信生态智能体对接插件，支持微信公众号、企业微信、微信客服及 Agent 桥接，具备消息加解密、被动快速响应、异步客服推送及 MCP 工具调用能力。",
+  "author": {
+    "name": "Ethan",
+    "email": "ethan@example.com"
+  },
+  "publisher": "manifoldor",
+  "license": "MIT",
+  "homepage": "https://github.com/manifoldor/wechat",
+  "repository": "https://github.com/manifoldor/wechat.git",
+  "keywords": [
+    "wechat",
+    "weixin",
+    "grokbot",
+    "agent",
+    "wecom",
+    "openkf",
+    "bot"
+  ],
+  "capabilities": ["canvas"],
+  "minClientVersions": {
+    "cursor": "0.18.0",
+    "sand": "0.18.0"
+  },
+  "variables": {
+    "type": "object",
+    "properties": {
+      "WECHAT_APP_ID": {
+        "type": "string",
+        "title": "WeChat AppID",
+        "description": "微信公众号或小程序 AppID"
+      },
+      "WECHAT_APP_SECRET": {
+        "type": "string",
+        "title": "WeChat AppSecret",
+        "description": "微信公众号或小程序 AppSecret",
+        "writeOnly": true
+      },
+      "WECHAT_TOKEN": {
+        "type": "string",
+        "title": "WeChat Token",
+        "description": "微信服务器回调验证 Token"
+      },
+      "WECHAT_AES_KEY": {
+        "type": "string",
+        "title": "EncodingAESKey",
+        "description": "微信消息加密密钥（43位字符）",
+        "writeOnly": true
+      },
+      "WECOM_CORP_ID": {
+        "type": "string",
+        "title": "WeCom CorpID",
+        "description": "企业微信企业 ID（可选）"
+      },
+      "WECOM_CORP_SECRET": {
+        "type": "string",
+        "title": "WeCom CorpSecret",
+        "description": "企业微信自建应用 Secret（可选）",
+        "writeOnly": true
+      },
+      "WECOM_AGENT_ID": {
+        "type": "string",
+        "title": "WeCom AgentID",
+        "description": "企业微信应用 AgentID（可选）"
+      },
+      "WECOM_BOT_WEBHOOK": {
+        "type": "string",
+        "title": "WeCom Bot Webhook",
+        "description": "企业微信群机器人 Webhook 地址（可选）"
+      },
+      "WECHAT_WEBHOOK_PORT": {
+        "type": "integer",
+        "title": "Webhook Server Port",
+        "description": "本地接收微信回调 HTTP 服务端口",
+        "default": 3000
+      }
+    },
+    "required": ["WECHAT_APP_ID", "WECHAT_APP_SECRET", "WECHAT_TOKEN"]
+  },
+  "skills": ["skills/wechat"],
+  "agents": ["agents/wechat-agent.md"],
+  "commands": ["commands/wechat.md"],
+  "rules": ["rules/wechat-rules.md"],
+  "hooks": "hooks/hooks.json",
+  "mcpServers": ".mcp.json"
+}

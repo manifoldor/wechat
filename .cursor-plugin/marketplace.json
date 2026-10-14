@@ -1,0 +1,33 @@
+{
+  "name": "grokbot-marketplace",
+  "owner": {
+    "name": "manifoldor",
+    "email": "ethan@example.com"
+  },
+  "description": "Grokbot Official & Community Plugin Marketplace",
+  "plugins": [
+    {
+      "name": "wechat",
+      "displayName": "WeChat Agent Connector",
+      "source": "./",
+      "description": "微信生态智能体对接插件，支持微信公众号、企业微信、微信客服及 Agent 桥接，具备消息加解密、被动快速响应、异步客服推送及 MCP 工具调用能力。",
+      "version": "1.0.0",
+      "author": {
+        "name": "Ethan",
+        "email": "ethan@example.com"
+      },
+      "publisher": "manifoldor",
+      "license": "MIT",
+      "homepage": "https://github.com/manifoldor/wechat",
+      "repository": "https://github.com/manifoldor/wechat.git",
+      "category": "Communication",
+      "tags": ["wechat", "agent", "wecom", "openkf", "messaging", "bot"],
+      "skills": ["skills/wechat"],
+      "agents": ["agents/wechat-agent.md"],
+      "commands": ["commands/wechat.md"],
+      "rules": ["rules/wechat-rules.md"],
+      "hooks": "hooks/hooks.json",
+      "mcpServers": ".mcp.json"
+    }
+  ]
+}

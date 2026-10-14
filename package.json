@@ -1,0 +1,45 @@
+{
+  "name": "grokbot-plugin-wechat",
+  "version": "1.0.0",
+  "description": "WeChat integration plugin for Grokbot Agent, supporting Official Accounts, WeCom, OpenKF customer service, and WeChat Agent bridge.",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "grokbot-wechat": "dist/index.js",
+    "wechat-mcp": "dist/mcp/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:manifoldor/wechat.git"
+  },
+  "homepage": "https://github.com/manifoldor/wechat#readme",
+  "bugs": {
+    "url": "https://github.com/manifoldor/wechat/issues"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js",
+    "server": "node dist/index.js server",
+    "mcp": "node dist/mcp/index.js",
+    "test": "node --test tests/*.test.mjs",
+    "check": "tsc --noEmit && npm run test"
+  },
+  "keywords": [
+    "grokbot",
+    "grokbot-plugin",
+    "wechat",
+    "weixin",
+    "agent",
+    "wecom",
+    "openkf",
+    "mcp",
+    "model-context-protocol"
+  ],
+  "author": "Ethan",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "typescript": "^5.7.0"
+  }
+}
