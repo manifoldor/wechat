@@ -3,25 +3,27 @@
   "name": "wechat",
   "displayName": "WeChat Agent Connector",
   "version": "1.0.0",
-  "description": "微信生态智能体对接插件，支持微信公众号、企业微信、微信客服及 Agent 桥接，具备消息加解密、被动快速响应、异步客服推送及 MCP 工具调用能力。",
+  "description": "Connect an agent to your own WeChat Official Account and WeCom (Enterprise WeChat) via the official Tencent APIs: send text/Markdown and customer-service messages, look up follower profiles, create parametric QR codes and manage menus. Requires your own AppID/AppSecret. Unofficial, not affiliated with Tencent.",
   "author": {
-    "name": "Ethan",
-    "email": "ethan@example.com"
+    "name": "yishan"
   },
   "publisher": "manifoldor",
   "license": "MIT",
-  "homepage": "https://github.com/manifoldor/wechat",
-  "repository": "https://github.com/manifoldor/wechat.git",
+  "homepage": "https://sibox.org",
+  "repository": "https://github.com/manifoldor/wechat",
   "keywords": [
     "wechat",
     "weixin",
-    "grokbot",
-    "agent",
+    "wechat-official-account",
     "wecom",
     "openkf",
-    "bot"
+    "messaging",
+    "customer-service",
+    "mcp"
   ],
-  "capabilities": ["canvas"],
+  "capabilities": [
+    "canvas"
+  ],
   "minClientVersions": {
     "cursor": "0.18.0",
     "sand": "0.18.0"
@@ -79,12 +81,25 @@
         "default": 3000
       }
     },
-    "required": ["WECHAT_APP_ID", "WECHAT_APP_SECRET", "WECHAT_TOKEN"]
+    "required": [
+      "WECHAT_APP_ID",
+      "WECHAT_APP_SECRET",
+      "WECHAT_TOKEN"
+    ]
   },
-  "skills": ["skills/wechat"],
-  "agents": ["agents/wechat-agent.md"],
-  "commands": ["commands/wechat.md"],
-  "rules": ["rules/wechat-rules.md"],
+  "skills": [
+    "skills/wechat"
+  ],
+  "agents": [
+    "agents/wechat-agent.md"
+  ],
+  "commands": [
+    "commands/wechat.md"
+  ],
+  "rules": [
+    "rules/wechat-rules.md"
+  ],
   "hooks": "hooks/hooks.json",
-  "mcpServers": ".mcp.json"
+  "mcpServers": ".mcp.json",
+  "logo": "assets/logo.png"
 }

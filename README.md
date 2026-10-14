@@ -1,3 +1,63 @@
+# wechat — WeChat Official Account & WeCom connector for Grok Bot
+
+`wechat` is an Agent Plugins 1.0 / MCP plugin that connects Grok Bot to **your own** WeChat Official Account (公众号) and WeCom (企业微信) using Tencent's **official, documented server APIs** (`api.weixin.qq.com`, `qyapi.weixin.qq.com`). It does not log in to personal WeChat accounts, does not use any unofficial protocol, and does not scrape or automate the WeChat app.
+
+- **Author:** yishan · **Publisher:** manifoldor · **Homepage:** https://sibox.org · **License:** MIT
+
+> **Unofficial.** This project is not affiliated with, endorsed by, or sponsored by Tencent. "WeChat", "Weixin" and "WeCom" are trademarks of Tencent; they are used here only to describe compatibility. You must comply with the WeChat Official Account and WeCom platform terms when using it.
+
+## Install
+
+- **Grok Bot plugin marketplace:** search for `wechat` and install, then fill in the variables below in the plugin settings.
+- **Manual MCP config:**
+  ```bash
+  git clone https://github.com/manifoldor/wechat.git && cd wechat
+  npm install && npm run build   # dist/ is already committed; build is optional
+  ```
+  Register the MCP server with your client (see `.mcp.json`): command `node`, args `["dist/mcp/index.js"]`, plus the environment variables below.
+
+## Credentials (required)
+
+You need your own Official Account (or test account) and optionally a WeCom app/group bot. Configure via the plugin variables or a local `.env` (git-ignored; template in `.env.example` with placeholder values only):
+
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `WECHAT_APP_ID`, `WECHAT_APP_SECRET` | yes | Official Account API access |
+| `WECHAT_TOKEN` | yes | Server callback signature verification |
+| `WECHAT_AES_KEY` | for safe mode | Message encryption (EncodingAESKey) |
+| `WECOM_CORP_ID`, `WECOM_CORP_SECRET`, `WECOM_AGENT_ID` | optional | WeCom self-built app |
+| `WECOM_BOT_WEBHOOK` | optional | WeCom group bot webhook |
+
+Never commit real secrets. Your server's IP must be on the Official Account IP whitelist for access-token calls.
+
+## Tools
+
+| Tool | Description |
+| --- | --- |
+| `wechat_send_text` | Send a text message via Official Account customer service or WeCom app |
+| `wechat_send_markdown` | Send Markdown to a WeCom app or group bot |
+| `wechat_send_custom_service_msg` | Push an async customer-service message to a follower (openId) |
+| `wechat_get_user_info` | Look up a follower's profile by openId |
+| `wechat_create_qrcode` | Create a temporary parametric QR code |
+| `wechat_manage_menu` | Get or publish the Official Account custom menu |
+| `wechat_get_token` | Check/refresh the access-token status (returns only a masked preview) |
+
+A webhook server (`npm run server`) can also receive Official Account callbacks (plaintext and encrypted modes) and bridge them to an agent.
+
+## Data sources
+
+All data comes from Tencent's official Official Account and WeCom APIs, scoped to the accounts whose credentials you provide. Note that the platform only allows customer-service messages to users who interacted within the last 48 hours.
+
+## Tests
+
+`npm test` runs 12 offline tests (manifest, signature, AES crypto, XML, webhook, MCP stdio). No credentials needed.
+
+## 中文说明
+
+`wechat` 是一个非官方的 Grok Bot 插件，通过微信公众号和企业微信的**官方接口**，让智能体用你自己的公众号、企微应用发消息、查粉丝资料、生成带参数二维码、管理菜单，也能接收公众号回调。不登录个人微信，不使用任何非官方协议。使用前需要你自己的 AppID / AppSecret 等凭证（在插件变量或本地 `.env` 中配置，切勿提交到仓库）。本项目与腾讯 / 微信官方无关。
+
+---
+
 # Grokbot WeChat 插件 (`wechat`)
 
 > 基于 **Grokbot 插件市场规范** 与 **微信官方接口标准** 构建的微信生态全能力智能体对接插件。
@@ -234,4 +294,4 @@ Grokbot 在装载 `.mcp.json` 时会自动管理此进程的生命周期。
 ---
 
 ## 📄 授权许可
-MIT License.
+MIT License — Copyright (c) 2026 Yishan Lin.
