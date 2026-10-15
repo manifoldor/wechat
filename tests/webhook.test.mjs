@@ -84,7 +84,8 @@ test("WeChatWebhookServer handles GET verification and POST message callback", a
     assert.equal(replyParsed.Content, "Echo: ping");
 
     // 4. Test encrypted message callback
-    const encodingAesKey = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG";
+    const { randomBytes } = await import("node:crypto");
+    const encodingAesKey = Buffer.from(randomBytes(32)).toString("base64").slice(0, 43);
     const secureConfig = {
       ...config,
       wechat: {

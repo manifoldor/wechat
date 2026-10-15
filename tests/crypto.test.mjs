@@ -1,10 +1,16 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { randomBytes } from "node:crypto";
 import { checkSignature, calcSignature } from "../dist/crypto/signature.js";
 import { WXBizMsgCrypt } from "../dist/crypto/wx-crypto.js";
 
+// Helper to generate a valid 43-character base64 EncodingAESKey dynamically for testing
+function generateTestAesKey() {
+  return Buffer.from(randomBytes(32)).toString("base64").slice(0, 43);
+}
+
 test("checkSignature validates official WeChat token signatures", () => {
-  const token = "my_secret_token";
+  const token = "mock_test_token";
   const timestamp = "1700000000";
   const nonce = "987654321";
 
@@ -14,13 +20,12 @@ test("checkSignature validates official WeChat token signatures", () => {
 });
 
 test("WXBizMsgCrypt encrypts and decrypts messages symmetrically", () => {
-  const token = "test_token";
-  // 43 base64 characters
-  const encodingAesKey = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG";
-  const appId = "wx1234567890abcdef";
+  const token = "mock_test_token";
+  const encodingAesKey = generateTestAesKey();
+  const appId = "wx_mock_test_appid";
 
   const crypt = new WXBizMsgCrypt(token, encodingAesKey, appId);
-  const originalXml = "<xml><ToUserName>wx1234567890abcdef</ToUserName><Content>Hello Encrypted World</Content></xml>";
+  const originalXml = "<xml><ToUserName>wx_mock_test_appid</ToUserName><Content>Hello Encrypted World</Content></xml>";
 
   const ciphertext = crypt.encrypt(originalXml);
   assert.ok(ciphertext);
@@ -31,9 +36,9 @@ test("WXBizMsgCrypt encrypts and decrypts messages symmetrically", () => {
 });
 
 test("WXBizMsgCrypt verifies msg_signature and wraps encrypted envelope", () => {
-  const token = "test_token";
-  const encodingAesKey = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG";
-  const appId = "wx1234567890abcdef";
+  const token = "mock_test_token";
+  const encodingAesKey = generateTestAesKey();
+  const appId = "wx_mock_test_appid";
 
   const crypt = new WXBizMsgCrypt(token, encodingAesKey, appId);
   const plainReply = "<xml><Content>Agent Secure Reply</Content></xml>";
